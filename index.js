@@ -44,44 +44,39 @@ function noVisible(elemento) {
 
 // Agregar elementos a la lista
 
-let acti = [];
+let arrayAct = [];
+
+let contador = 0;
+
 
 btnAgregar.addEventListener("click", function () {
     visible(sectionListActividades);
-
-    const divCont = document.createElement('div');
-    divCont.classList.add("botones");
-
-    const lista = document.createElement('li');
-    lista.innerHTML = (q.value); 
-
-    const btnActi = document.createElement("button");
-    const btnEdit = document.createElement('button');
-    const btnElim = document.createElement('button');     
-
-    listActividades.appendChild(divCont);
-    divCont.appendChild(lista);
-    divCont.appendChild(btnActi);
-    divCont.appendChild(btnEdit);
-    divCont.appendChild(btnElim);
-
-    
-    let count = acti.push(divCont);
-    console.log(acti)  
-    
+    addActividad();      
 });
 
-// Agregar div en html
+// Agregar actividad 
 
-function addLista(actividad) {
+function addActividad() {
+    contador = contador + 1;       
 
+        const divCont = document.createElement('div');
 
-
- 
+        let actividad =' '
+    
+            actividad += `<div id="${contador}" class="listCont">
+                            <p>"${q.value}"</p>   
+                            <button onclick="eliminarAct(${contador})">Eliminar</button>  
+                            <button onclick="eliminarAct(${contador})">Editar</button>                         
+                        </div>`
+    
+        divCont.innerHTML = actividad; 
+    
+        listActividades.appendChild(divCont);
+            
+        let count = arrayAct.push(actividad);
+            
+        console.log(arrayAct); 
 }
-
-
-
 
 
 // ELIMINAR 
@@ -97,11 +92,15 @@ btnEliminar.addEventListener("click", function () {
     location.reload();
 });
 
-// Eliminar actividad
+// Eliminar actividad 
 
-var myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon'];
-var removed = myFish.splice(3, 1);
+function eliminarAct(contador) {
 
+    const eli = document.getElementById(`${contador}`);
+    noVisible(eli);
+    let removed = arrayAct.splice(contador, 1);   
+    console.log(arrayAct);  
+}
 
 
 // Activar toda la lista
