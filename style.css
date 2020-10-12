@@ -1,0 +1,18 @@
+#body {
+    background-color: blueviolet;
+}
+
+.noVisible {
+    display: none;
+}
+
+.titulo_principal {
+    color: white;
+    text-align: center;
+    margin: 8%;
+}
+
+.botones button {
+    width: 50px;
+    height: 50px;
+}
