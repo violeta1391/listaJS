@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body id="body" class="container-fluid">   
     
     <header>
-        <h1 class="titulo_principal">Crea tu lista personalizada</h1>     
+        <h1 class="titulo_principal">Crea tu lista</h1>     
     </header>
 
-    <main>
-        <section class="lista">
+    <main class="main" id="main">
+        <section class="lista" id="lista">
             <div class="card-deck">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" id="agregar_acti">
                         <h5 class="card-title">Agregar actividad</h5>
-                        <input type="text" class="form-control mb-4" id="input_buscador" placeholder="Completar" required>
+                        <input type="text" class="form-control mb-4" id="input_buscador" placeholder="Completar" required onkeyup="onKeyUp(event)">
                         <button class="btn btn-info btn-block" id="btn_agregar" type="submit">Agregar</button>                  
                     </div>
                 </div>
@@ -30,9 +31,7 @@
                 <div class="card">
                     <div class="card-body" id="cont_lista_actividades">
                         <h5 class="card-title">Actividades</h5>
-                        <div id="lista_actividades"></div>
-                        <button class="btn btn-info btn-block" id="btn_eliminar" type="submit">Eliminar Lista</button>
-                        
+                        <div id="lista_actividades"></div>                        
                     </div>
                 </div>
         </section>
@@ -43,10 +42,16 @@
                     <div class="card-body">
                         <h5 class="card-title">Actividades Activas</h5>
                         <div id="lista_actividades_activas"></div>
-                        
+                      
                     </div>
                 </div>
         </section>
+
+        <section class="noVisible" id="section_eliminar">
+            <button class="btn btn-info btn-block" id="btn_eliminar" type="submit">Eliminar Todo</button> 
+        </section>
+
+  
     </main>
 
     <script src="./index.js"></script>

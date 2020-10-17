@@ -1,6 +1,6 @@
 //Constantes
 
-const q = document.getElementById("input_buscador"); 
+const q = document.getElementById("input_buscador");
 
 const sectionListActividades = document.getElementById("section_lista_actividades");
 
@@ -12,17 +12,17 @@ const sectionActividadesActivas = document.getElementById("section_actividades_a
 
 const listActividadesActivas = document.getElementById("lista_actividades_activas");
 
+const sectionEliminar = document.getElementById("section_eliminar");
+
+
 //Const Botones
 
 const btnAgregar = document.getElementById("btn_agregar");
 
-const btnEliminar = document.getElementById("btn_eliminar"); 
-
-const btnActivar = document.getElementById("btn_activar");
+const btnEliminar = document.getElementById("btn_eliminar");
 
 
 // Funciones
-
 
 // Visible
 
@@ -39,124 +39,144 @@ function noVisible(elemento) {
 
 // Agregar elementos a la lista
 
-let arrayAct = [];
+// Agregar apretando enter
 
-let contador = 0;
+function onKeyUp(event) {
+    var keycode = event.keyCode;
+    if(keycode == '13'){
+        visible(sectionListActividades);
+        visible(sectionEliminar);
+        addActividad();
+    }
+  }
+
+// Agregar apretando con click en el boton 
 
 btnAgregar.addEventListener("click", function () {
     visible(sectionListActividades);
-    addActividad();      
+    visible(sectionEliminar);
+    addActividad();
 });
 
 // Agregar actividad 
 
+let contador = 0;
+
 function addActividad() {
-    contador = contador + 1;       
 
-        const divCont = document.createElement('div');
+    contador = contador + 1;
 
-        let actividad =' '
-    
-            actividad += `<div id="${contador}" class="listCont">
-                            <li id="liAct${contador}">${q.value}</li>   
-                            <button onclick="eliminarAct(${contador})">Eliminar</button>  
-                            <button onclick="editarAct(${contador})">Editar</button> 
-                            <button onclick="activarActividades(${contador})">Activar</button>                        
-                        </div>`
-    
-        divCont.innerHTML = actividad; 
-    
+    const divCont = document.createElement('div');
+
+    let t = q.value;
+
+    let actividad = ' '
+
+    actividad += `<div id="actividad${contador}" class="listCont" >
+                            <li id="liAct${contador}">${t}</li> 
+                            <div id="botones_lista${contador}" class="container-fluid">
+                                <button class="myBtn" onclick="eliminarAct(${contador})">Eliminar</button>  
+                                <button class="myBtn" onclick="editar(${contador})">Editar</button> 
+                                <button class="myBtn" id="activarActividades${contador}" onclick="activarActividades(${contador})">Activar</button> 
+                            </div>                         
+                    </div>`
+
+    divCont.innerHTML = actividad;
+
+    // Verificacion 
+
+    if (t === "") {
+        alert("Agregar actividad");
+    } else {
         listActividades.appendChild(divCont);
-            
-        let count = arrayAct.push(actividad);
-            
-        console.log(arrayAct); 
+    }
+
+    q.value = "";
 }
 
 
-// ELIMINAR 
-
-function eliminar(padre, hijo) {
-    let eliminarElemento = padre.removeChild(hijo);
-}
-
-// Eliminar toda la lista
+// Eliminar todo
 
 btnEliminar.addEventListener("click", function () {
-    //eliminar(ContlistActividades, listActividades);
-
-    let removed = arrayAct.splice(0, arrayAct.length);
-
-    //location.reload();
+    location.reload();
 });
 
 // Eliminar actividad 
 
 function eliminarAct(contador) {
-
-    let eli = document.getElementById(`${contador}`);
+    let eli = document.getElementById(`actividad${contador}`);
     noVisible(eli);
-    let removed = arrayAct.splice(contador, 1);   
-    console.log(arrayAct);  
 }
 
 
 // Editar actividad 
 
-function editarAct(contador) {
-    nuevoP = prompt('Nuevo nombre de la actividad')
-    let edi = document.getElementById(`liAct${contador}`);
-    edi.innerHTML = nuevoP;
+function editar(contador) {
+
+    // Seleccionar li
+
+    let eli = document.getElementById(`liAct${contador}`);
+
+    // Crear div con input y button para editar text de li
+
+    const divEditar = document.createElement('div');
+    const inputEditar = document.createElement('input');
+    const btnAceptar = document.createElement('button');
+    btnAceptar.id = "buttonAceptar";
+    btnAceptar.className = "myBtn";
+    btnAceptar.textContent = "Aceptar";
+
+    eli.appendChild(divEditar);
+    divEditar.appendChild(inputEditar);
+    divEditar.appendChild(btnAceptar);
+
+    // Verificacion 
+
+    btnAceptar.addEventListener("click", function () {
+        if (inputEditar.value === "") {
+            alert("Agregar actividad");
+        } else {
+            eli.textContent = inputEditar.value;
+        }
+    })
 }
 
-// Activar una actividad  - cambiar q.value 
 
-let arrayActActivas = [];
+// Activar una actividad  
 
-function activarActividades() {
+function activarActividades(contador) {
 
     visible(sectionActividadesActivas);
 
-    contador = contador + 1;       
+    // Cambiar de posicion actividad
 
     const divCont = document.createElement('div');
-    
-    let actividad =' '
-    
-    actividad += `<div id="${contador}" class="listCont">
-                        <li id="liAct${contador}">${q.value}</li> 
-                        <button onclick="eliminarAct(${contador})">Eliminar</button>  
-                        <button onclick="editarAct(${contador})">Editar</button>                      
-                    </div>`
-    
-    divCont.innerHTML = actividad; 
-    
+
+    let ediD = document.getElementById(`actividad${contador}`);
+
+    divCont.appendChild(ediD);
+
     listActividadesActivas.appendChild(divCont);
 
-    let count = arrayActActivas.push(actividad);    
-            
-    console.log(arrayActActivas); 
+    // Eliminar btn activar 
+
+    let eli = document.getElementById(`activarActividades${contador}`);
+    noVisible(eli);
+
+
+    // Crear boton desactivar y volver a lista de actividades 
+
+    let botones = document.getElementById(`botones_lista${contador}`);
+
+    const btnDesactivar = document.createElement('button');
+    btnDesactivar.className = "myBtn";
+    btnDesactivar.textContent = "Desactivar";
+    botones.appendChild(btnDesactivar);
+
+    btnDesactivar.addEventListener("click", function() {
+        noVisible(btnDesactivar);
+        visible(eli);
+        listActividades.appendChild(divCont);
+    })
 }
 
-/*
-
-// Activar lista completa 
-
-btnActivar.addEventListener("click", function () {
-    visible(sectionActividadesActivas);
-
-    //activarActividades();
-
-    //let arrayActActivas = arrayAct.slice();
-
-    //arrayActActivas.forEach(activarActividades);
-
-    //eliminar(ContlistActividades, listActividades);
-
-    let removed = arrayAct.splice(0, arrayAct.length);  
-
-    console.log(arrayAct);      
-
-});
-
-*/

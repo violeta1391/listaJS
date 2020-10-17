@@ -1,19 +1,116 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700);
+
+:root{
+	--blue:#007bff; 
+	--info:#17a2b8; 
+	--indigo:#6610f2;
+	--purple:#6f42c1;
+	--pink:#e83e8c;
+	--red:#dc3545;
+	--orange:#fd7e14;
+	--yellow:#ffc107; 
+	--green: #28a745; 
+}
+
+
+
+
 #body {
-    background-color: blueviolet;
+    background-color: #6e42c1fa;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    padding: 2%;
+    
+}
+.card-deck {
+	padding-bottom: 5%;
 }
 
 .noVisible {
     display: none;
 }
 
-.titulo_principal {
-    color: white;
-    text-align: center;
-    margin: 8%;
-}
-
-.botones button {
+.main {
+    max-width: 750px;
+    margin: 0 auto;
     
-    height: 50px;
 }
 
+.main button {
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+
+.titulo_principal {
+	text-shadow: 1px 1px 3px black; 
+	font-family: 'Paytone One', sans-serif;	
+    font-size: 2.5em;
+    letter-spacing: .1em;
+    
+    color: whitesmoke;  
+    text-align: center;
+    padding: 2em;
+    margin: 0 auto;
+}
+
+#agregar_acti {
+    color: var(--green);
+    font-size: 2em;
+}
+
+#agregar_acti button {
+    font-size: .7em;
+    letter-spacing: .1em; 
+    font-weight: bold;
+}
+
+
+#section_lista_actividades {
+    color: var(--orange);
+}
+
+#section_actividades_activas {
+    color: var(--red);
+}
+
+.listCont button {
+    margin-bottom: 3%;
+
+}
+
+.listCont li {
+    margin-bottom: 1%;
+}
+
+.myBtn {
+    max-width: 100px;    
+    font-size: 1em;
+    padding: 7px;
+    border: none;
+    background: var(--indigo);
+    color: #fff; 
+    padding: 10px;
+    border-radius: 6%;      
+}
+
+.myBtn:hover {
+    background: #ddd;
+    color: black;
+}
+
+#section_eliminar {
+    margin-bottom: 5%;
+    
+}
+
+#section_eliminar button {
+    
+    font-size: 1.2em;
+}
+
+#buttonAceptar {
+    margin: 1%;
+}
