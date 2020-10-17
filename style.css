@@ -1,18 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700);
 
 :root{
-	--blue:#007bff; 
+    --blue:#007bff;
+    --blue2: #5286F3;  
 	--info:#17a2b8; 
 	--indigo:#6610f2;
-	--purple:#6f42c1;
-	--pink:#e83e8c;
+	--purple:#6e42c1fa;
+    --pink:#e83e8c;
+    --pink2: #FF5964;
 	--red:#dc3545;
 	--orange:#fd7e14;
 	--yellow:#ffc107; 
 	--green: #28a745; 
 }
-
-
 
 
 #body {
@@ -62,7 +62,7 @@
 }
 
 #agregar_acti button {
-    font-size: .7em;
+    font-size: .5em;
     letter-spacing: .1em; 
     font-weight: bold;
 }
@@ -90,10 +90,10 @@
     font-size: 1em;
     padding: 7px;
     border: none;
-    background: var(--indigo);
-    color: #fff; 
+    background: var(--blue2);;
     padding: 10px;
-    border-radius: 6%;      
+    border-radius: 6%;    
+    color: whitesmoke;   
 }
 
 .myBtn:hover {
@@ -104,13 +104,15 @@
 #section_eliminar {
     margin-bottom: 5%;
     
+    
 }
 
-#section_eliminar button {
-    
+#section_eliminar button {    
     font-size: 1.2em;
+
 }
 
 #buttonAceptar {
     margin: 1%;
 }
+

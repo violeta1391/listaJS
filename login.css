@@ -1,0 +1,30 @@
+
+
+.login {
+    margin: 0 auto; 
+    padding: 7%;
+    max-width: 800px;
+    
+}
+h2 {
+    font-family: 'Paytone One', sans-serif;
+    color: rgb(44, 40, 40);
+}
+
+#ingresar {
+    max-width: 300px;
+    margin: 0 auto; 
+}
+
+#form_login {
+    margin: 50px;
+}
+
+#form_mail {
+    margin: 5% 0 5% 0;
+}
+
+#form_pass {
+    margin: 5% 0 7% 0;
+}
+

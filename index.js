@@ -43,12 +43,12 @@ function noVisible(elemento) {
 
 function onKeyUp(event) {
     var keycode = event.keyCode;
-    if(keycode == '13'){
+    if (keycode == '13') {
         visible(sectionListActividades);
         visible(sectionEliminar);
         addActividad();
     }
-  }
+}
 
 // Agregar apretando con click en el boton 
 
@@ -75,13 +75,15 @@ function addActividad() {
     actividad += `<div id="actividad${contador}" class="listCont" >
                             <li id="liAct${contador}">${t}</li> 
                             <div id="botones_lista${contador}" class="container-fluid">
-                                <button class="myBtn" onclick="eliminarAct(${contador})">Eliminar</button>  
-                                <button class="myBtn" onclick="editar(${contador})">Editar</button> 
+                                <button class="myBtn" id="eliminarAct(${contador})" onclick="eliminarAct(${contador})">Eliminar</button>  
+                                <button class="myBtn" id="editar(${contador})" onclick="editar(${contador})">Editar</button> 
                                 <button class="myBtn" id="activarActividades${contador}" onclick="activarActividades(${contador})">Activar</button> 
                             </div>                         
                     </div>`
 
-    divCont.innerHTML = actividad;
+    divCont.innerHTML = actividad;   
+
+
 
     // Verificacion 
 
@@ -173,7 +175,7 @@ function activarActividades(contador) {
     btnDesactivar.textContent = "Desactivar";
     botones.appendChild(btnDesactivar);
 
-    btnDesactivar.addEventListener("click", function() {
+    btnDesactivar.addEventListener("click", function () {
         noVisible(btnDesactivar);
         visible(eli);
         listActividades.appendChild(divCont);
